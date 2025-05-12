@@ -6,13 +6,13 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
-import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminDashboard from "../src/pages/admin/AdminDashboard";
 import ManageUsers from "./pages/admin/ManageUsers";
 import ManageTask from "./pages/admin/ManageTask";
 import Createtask from "./pages/admin/Createtask";
 import UserDashboard from "./pages/user/UserDashboard";
 import Mytasks from "./pages/user/Mytasks";
-import SignUp from "./pages/auth/Signup";
+import SignUp from "../src/pages/auth/SignUp";
 import Login from "./pages/auth/Login";
 import TaskDetails from "./pages/user/TaskDetails";
 import PrivateRoute from "./routes/PrivateRoute";
