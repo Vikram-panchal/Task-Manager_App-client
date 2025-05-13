@@ -1,6 +1,6 @@
 export const BASEURL = "https://task-manager-app-server-5zrx.onrender.com";
-  // import.meta.env.BASEURL;
-
+// export const BASEURL = "http://localhost:5001";
+console.log(BASEURL);
 export const API_PATHS = {
   AUTH: {
     REGISTER: "/api/auth/register",
