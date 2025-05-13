@@ -1,5 +1,5 @@
-// export const BASEURL = "https://task-manager-app-server-5zrx.onrender.com";
-export const BASEURL = "http://localhost:5001";
+export const BASEURL = "https://task-manager-app-server-5zrx.onrender.com";
+// export const BASEURL = "http://localhost:5001";
 console.log(BASEURL);
 export const API_PATHS = {
   AUTH: {
