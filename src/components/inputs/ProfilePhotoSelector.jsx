@@ -9,7 +9,12 @@ const ProfilePhotoSelector = ({ image, setImage }) => {
 
     if (file) {
       //upload the image state
-      setImage(file);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = async () => {
+        const base64Image = reader.result;
+        setImage(base64Image);
+      };
 
       const preview = URL.createObjectURL(file);
       setPreviewUrl(preview);

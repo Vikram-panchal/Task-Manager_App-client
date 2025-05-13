@@ -24,7 +24,7 @@ const ManageTask = () => {
       );
 
       const statusSummary = response?.data?.statusSummary || {};
-console.log(statusSummary);
+      console.log(statusSummary);
       const statusArray = [
         {
           label: "All",
@@ -36,14 +36,14 @@ console.log(statusSummary);
         },
         {
           label: "In Progress",
-          count: statusSummary?.inprogressTasks || 0,
+          count: statusSummary?.inProgressTasks || 0,
         },
         {
           label: "Completed",
           count: statusSummary?.completedTasks || 0,
         },
       ];
-      
+
       setTabs(statusArray);
     } catch (error) {
       console.error("Error fetching tasks", error);
@@ -66,7 +66,7 @@ console.log(statusSummary);
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-xl md:text-xl font-medium">My Tasks</h2>
           </div>
-          {tabs?.[0]?.count > 0 && (
+          {tabs?.[0]?.count > 0 ? (
             <div className="flex items-center gap-3">
               <TaskStatusTabs
                 tabs={tabs}
@@ -74,6 +74,8 @@ console.log(statusSummary);
                 setActiveTab={setFilterStatus}
               />
             </div>
+          ) : (
+            <div className="flex text-center justify-center py-4 text-gray-500 text-sm">No Task Found</div>
           )}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">

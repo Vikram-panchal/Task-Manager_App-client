@@ -14,69 +14,10 @@ const SignUp = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [confirmPassword, setConfirmPassword] = useState("");
   const [adminInviteToken, setAdminInviteToken] = useState("");
 
   const [error, setError] = useState(null);
   const { updateUser } = useContext(UserContext);
-
-  // const handleSignupSubmit = async (e) => {
-  //   e.preventDefault();
-  //   let profileImageUrl = '';
-  //   // setError("");
-  //   if (!fullName) {
-  //     setError("Please enter name");
-  //     return;
-  //   }
-  //   if (!validateEmail(email)) {
-  //     setError("Please enter a valid email address.");
-  //     return;
-  //   }
-  //   if (!password) {
-  //     setError("Please enter the password.");
-  //     return;
-  //   }
-
-  //   // if (password !== confirmPassword) {
-  //   //   setError("Passwords do not match.");
-  //   //   return;
-  //   // }
-  //   setError("");
-
-  //   //Sign up Api Call Goes here
-
-  //   try {
-
-  //     // Upload image if present
-  //     if (profileImage) {
-  //       const response = await uploadeImage(profileImage);
-  //       profileImageUrl = response.imageUrl || "";
-  //     }
-  //     const response = await apiService.post(API_PATHS.AUTH.REGISTER, {
-  //       name: fullName,
-  //       email,
-  //       password,
-  //       profileImageUrl,
-  //       adminInviteToken,
-  //     });
-
-  //     const { token, role } = response.data;
-  //     if (token) {
-  //       localStorage.setItem("token", token);
-  //       updateUser(response.data);
-
-  //       //redirect based on role
-  //       Navigate(role === "admin" ? "/admin/dashboard" : "/user/dashboard");
-  //     }
-  //   } catch (error) {
-  //     if (error.response && error.response.data.message) {
-  //       setError(error.response.data.message);
-  //     } else {
-  //       setError("Something went wrong.");
-  //     }
-  //   }
-  // };
-
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
@@ -94,28 +35,23 @@ const SignUp = () => {
       setError("Please enter the password.");
       return;
     }
+    if(!profileImage) {
+      setError("Please select a profile image.");
+      return;
+    }
   
-    let profileImageUrl = "";
-  
+    setError("");
+    
     try {
-      // Upload image if selected
-      if (profileImage) {
-        const uploadResponse = await uploadeImage(profileImage);
-        if (!uploadResponse || !uploadResponse.imageUrl) {
-          setError("Failed to upload image. Please try again.");
-          return;
-        }
-        profileImageUrl = uploadResponse.imageUrl;
-      }
   
       const response = await apiService.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
         email,
         password,
-        profileImageUrl,
+        profileImageUrl: profileImage,
         adminInviteToken,
       });
-  
+
       const { token, role } = response.data;
       if (token) {
         localStorage.setItem("token", token);
